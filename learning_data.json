@@ -1,0 +1,38 @@
+[
+  {
+    "model": "learning.course",
+    "pk": 1,
+    "fields": {
+      "title": "ghfghfgh",
+      "preview": "",
+      "description": "fghfghfgh"
+    }
+  },
+  {
+    "model": "learning.course",
+    "pk": 2,
+    "fields": {
+      "title": "вводный курс",
+      "preview": "",
+      "description": "посвящение"
+    }
+  },
+  {
+    "model": "learning.course",
+    "pk": 3,
+    "fields": {
+      "title": "курс молодого бойца",
+      "preview": "",
+      "description": "огонь и вода"
+    }
+  },
+  {
+    "model": "learning.course",
+    "pk": 4,
+    "fields": {
+      "title": "курс №1",
+      "preview": "",
+      "description": "самый лучший курс"
+    }
+  }
+]
