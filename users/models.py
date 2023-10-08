@@ -3,6 +3,11 @@ from django.db import models
 
 NULLABLE = {'blank': True, 'null': True}
 
+class UserRoles(models.TextChoices):
+    MEMBER = 'member'
+    MODERATOR = 'moderator'
+
+
 class User(AbstractUser):
 
     username = None
@@ -11,7 +16,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=35, verbose_name='телефон', **NULLABLE)
     avatar = models.ImageField(upload_to='users/', verbose_name='аватар', **NULLABLE)
     country = models.CharField(max_length=100, verbose_name='страна', **NULLABLE)
-
+    role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.MEMBER)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
