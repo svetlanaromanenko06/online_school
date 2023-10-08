@@ -33,6 +33,11 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
 class LessonDestroyAPIView(generics.DestroyAPIView):
     queryset = Lesson.objects.all()
 
+class LessonViewSet(viewsets.ModelViewSet):
+    serializer_class = LessonSerializer
+    queryset = Lesson.objects.all()
+
+
 
 class PaymentListAPIView(generics.ListAPIView):
     queryset = Payment.objects.all()
@@ -41,3 +46,6 @@ class PaymentListAPIView(generics.ListAPIView):
     ordering_fields = ('payment_date',)
     filterset_fields = ('course', 'lesson', 'pay_method',)
 
+class PaymentViewSet(viewsets.ModelViewSet):
+    serializer_class = PaymentSerializer
+    queryset = Payment.objects.all()
