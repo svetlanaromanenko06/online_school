@@ -36,7 +36,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 class LessonCreateAPIView(generics.CreateAPIView):
     serializer_class = LessonSerializer
-    permission_classes = [IsAuthenticated, IsModerator | IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def perform_create(self, serializer):
         new_lesson = serializer.save()
@@ -71,7 +71,13 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
 class LessonUpdateAPIView(generics.UpdateAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes =  [IsAuthenticated, IsModerator | IsOwner]
+
+    def get_queryset(self):
+        if self.request.user.role == UserRoles.MODERATOR:
+            return Lesson.objects.all()
+        else:
+            return Lesson.objects.filter(owner=self.request.user)
 
 
 
