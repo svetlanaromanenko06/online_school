@@ -4,6 +4,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.filters import OrderingFilter
 
 from learning.models import Course, Lesson, Payment
+from learning.paginators import FirstPaginator
 from learning.permissions import IsModerator, IsOwner
 from learning.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -13,7 +14,7 @@ from users.models import UserRoles
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated, IsModerator | IsOwner]
-
+    pagination_class = FirstPaginator
     def get_queryset(self):
         if self.request.user.role == UserRoles.MODERATOR:
             return Course.objects.all()
@@ -48,6 +49,7 @@ class LessonListAPIView(generics.ListAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, IsModerator | IsOwner]
+    pagination_class = FirstPaginator
 
     def get_queryset(self):
         if self.request.user.role == UserRoles.MODERATOR:
