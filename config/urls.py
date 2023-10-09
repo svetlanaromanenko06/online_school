@@ -23,3 +23,4 @@ urlpatterns = [
     path('', include('learning.urls', namespace='learning')),
 
 ]
+
